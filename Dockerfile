@@ -1,6 +1,6 @@
-FROM alpine:3.17 as builder
+FROM debian:slim-buster as builder
 
-RUN apk update && apk add --no-cache curl unzip
+RUN apt update && apk install --no-cache curl unzip && rm -rf /var/lib/apt/lists/*
 
 RUN curl -LJO https://github.com/PaulJuliusMartinez/jless/releases/download/v0.8.0/jless-v0.8.0-x86_64-unknown-linux-gnu.zip
 
@@ -8,4 +8,4 @@ RUN curl -LJO https://github.com/PaulJuliusMartinez/jless/releases/download/v0.8
 RUN unzip jless-v0.8.0-x86_64-unknown-linux-gnu.zip
 RUN chmod +x jless && mv jless /usr/bin/jless
 
-ENTRYPOINT ["jless"]
+CMD sh
