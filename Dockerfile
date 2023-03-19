@@ -1,4 +1,4 @@
-FROM debian:slim-buster as builder
+FROM debian:buster-slim as builder
 
 RUN apt update && apk install --no-cache curl unzip && rm -rf /var/lib/apt/lists/*
 
